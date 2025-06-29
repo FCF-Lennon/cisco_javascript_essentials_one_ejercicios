@@ -386,3 +386,114 @@ if (!valor_inicial || !valor_final) {
         }
     }
 }
+
+
+// Ejercicio 02 - Hay diez números diferentes en el siguiente arreglo:
+
+let numbers = [21, 45, 100, 12, 11, 78, 61, 4, 39, 22];
+
+/*
+    Escribe un programa que primero muestre todos esos números en la consola, luego solo aquellos 
+    que sean pares (pista: el resto de dividir un número par por 2 es igual a 0), y después solo 
+    los que sean mayores que 10 y al mismo tiempo menores que 60.
+*/
+
+// 1. Mostrar todos los números
+console.log("Todos los números:");
+for (let number of numbers) {
+  console.log(number);
+}
+
+// 2. Mostrar solo los números pares
+console.log("\nNúmeros pares:");
+for (let number of numbers) {
+  if (number % 2 === 0) {
+    console.log(number);
+  }
+}
+
+// 3. Mostrar números mayores que 10 y menores que 60
+console.log("\nNúmeros mayores que 10 y menores que 60:");
+for (let number of numbers) {
+  if (number > 10 && number < 60) {
+    console.log(number);
+  }
+}
+
+
+
+// Ejercicio 04 - Escribe un programa usando un bucle que le pida al usuario el nombre de una película 
+// (primer prompt) y su puntuación en www.imdb.com (segundo prompt).
+// El programa permitirá ingresar tantas películas como se quiera en un arreglo llamado movies.
+// Cada elemento del arreglo será un objeto que contenga dos campos: title e imdb.
+// La entrada finaliza si el usuario presiona Cancelar en alguno de los cuadros de diálogo.
+// Luego, el programa debe mostrar en consola primero todas las películas con una puntuación menor a 7,
+// y después las que tengan puntuación mayor o igual a 7.
+
+// Muestra el nombre de la película y su puntuación juntos, por ejemplo:
+
+// Lost in Translation (7.7)
+
+
+let movies = [
+    { title: "Fight Club", imdb: 8.8 },
+    { title: "The Shawshank Redemption", imdb: 9.3 },
+    { title: "The Good, the Bad and the Ugly", imdb: 8.8 },
+    { title: "12 Angry Men", imdb: 9.0 },
+    { title: "The Godfather", imdb: 9.2 },
+    { title: "The Dark Knight", imdb: 9.0 },
+    { title: "Schindler's List", imdb: 8.9 },
+    { title: "The Lord of the Rings: The Return of the King", imdb: 8.9 },
+    { title: "Pulp Fiction", imdb: 8.9 },
+    { title: "Forrest Gump 1", imdb: 8.8 },
+    { title: "Forrest Gump 2", imdb: 4.8 },
+    { title: "Forrest Gump 3", imdb: 6.8 },
+];
+
+let mayor_puntuacion = [];
+let menor_puntuacion = [];
+
+let n_movies = Number(prompt("¿Cuántas películas va a ingresar?"));
+
+if (isNaN(n_movies) || !Number.isInteger(n_movies) || n_movies < 1) {
+    console.log("Debe ingresar un número válido");
+} else {
+    for (let n_movie = 1; n_movie <= n_movies; n_movie++) {
+        let movie = prompt(`Escriba el nombre de la película #${n_movie}:`);
+        let v_movie = movie === null || movie.trim() === "";
+
+        let puntuacionTexto = prompt("Ingrese la puntuación de la película según IMDB:");
+        let v_puntuacion = puntuacionTexto === null || puntuacionTexto.trim() === "";
+
+        if (v_movie || v_puntuacion) {
+            break;
+        }
+
+        let puntuacion = Number(puntuacionTexto);
+        if (isNaN(puntuacion) || puntuacion < 0 || puntuacion > 10) {
+            console.log("Puntuación inválida. Se omite esta entrada.");
+            continue;
+        }
+
+        movies.push({ title: movie, imdb: puntuacion });
+        console.log(`${movie} (${puntuacion})`);
+    }
+
+    for (let i = 0; i < movies.length; i++) {
+        if (movies[i].imdb >= 7) {
+            mayor_puntuacion.push(movies[i]);
+        } else {
+            menor_puntuacion.push(movies[i]);
+        }
+    }
+
+    console.log("\nPelículas con puntuación menor a 7:");
+    for (let i = 0; i < menor_puntuacion.length; i++) {
+        console.log(`${menor_puntuacion[i].title} (${menor_puntuacion[i].imdb})`);
+    }
+
+    console.log("\nPelículas con puntuación mayor o igual a 7:");
+    for (let i = 0; i < mayor_puntuacion.length; i++) {
+        console.log(`${mayor_puntuacion[i].title} (${mayor_puntuacion[i].imdb})`);
+    }
+}
