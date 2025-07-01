@@ -347,9 +347,9 @@ if (isNaN(num_uno) || isNaN(num_dos)) {
 
 // o tambien:
 
-let firstNumber = Number(prompt("Enter first number"));
-let secondNumber = Number(prompt("Enter second number"));
-let operand = prompt("Enter operand (+, -, * or /)");
+let firstNumber = Number(prompt("Ingrese el primer número"));
+let secondNumber = Number(prompt("Ingrese el segundo número"));
+let operand = prompt("Ingrese la operación (+, -, * or /)");
 let result;
 
 if (!Number.isNaN(firstNumber) && !Number.isNaN(secondNumber)) {
@@ -358,10 +358,10 @@ if (!Number.isNaN(firstNumber) && !Number.isNaN(secondNumber)) {
         case "-": result = firstNumber - secondNumber; break;
         case "*": result = firstNumber * secondNumber; break;
         case "/": result = firstNumber / secondNumber; break;
-        default: result = "Error: unknown operand";
+        default: result = "Error: operación desconocida";
     }
 } else {
-    result = "Error: at least one of the entered values is not a number";
+    result = "Error: al menos uno de los valores ingresados no es un número";
 }
 alert(result);
 

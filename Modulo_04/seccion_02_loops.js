@@ -497,3 +497,92 @@ if (isNaN(n_movies) || !Number.isInteger(n_movies) || n_movies < 1) {
         console.log(`${mayor_puntuacion[i].title} (${mayor_puntuacion[i].imdb})`);
     }
 }
+
+// Ejercicio 05 - El contenido del objeto que describe la posición de la embarcación llamada 
+// "Mareno" se muestra en la consola:
+
+/*
+LATITUD -> 40.07288  
+LONGITUD -> 154.48535  
+RUMBO -> 285.6  
+VELOCIDAD -> 14.0  
+IMO -> 9175717  
+NOMBRE -> MARENO
+*/
+
+// El siguiente código se utiliza para esto. Completa el programa declarando el objeto que 
+// falta en lugar de los tres puntos:
+
+// let vessel = ... 
+
+// Respuesta: 
+
+let vessel = {
+    LATITUD: 40.07288,
+    LONGITUD: 154.48535,
+    RUMBO: 285.6,
+    VELOCIDAD: 14.0,
+    IMO: 9175717,
+    NOMBRE: "MARENO"
+};
+
+for (let key in vessel) { 
+    console.log(`${key} -> ${vessel[key]}`); 
+}
+
+// Ejercicio 06 -  Modifica el programa de calculadora que realizaste en el Módulo 4, Sección 2, 
+// de manera que funcione dentro de un bucle hasta que el usuario ingrese Q en cualquiera de 
+// los cuadros de entrada (prompt).
+
+/*
+    let firstNumber = Number(prompt("Enter first number"));
+    let secondNumber = Number(prompt("Enter second number"));
+    let operand = prompt("Enter operand (+, -, * or /)");
+    let result;
+
+    if (!Number.isNaN(firstNumber) && !Number.isNaN(secondNumber)) {
+        switch (operand) {
+            case "+": result = firstNumber + secondNumber; break;
+            case "-": result = firstNumber - secondNumber; break;
+            case "*": result = firstNumber * secondNumber; break;
+            case "/": result = firstNumber / secondNumber; break;
+            default: result = "Error: unknown operand";
+        }
+    } else {
+        result = "Error: at least one of the entered values is not a number";
+    }
+    alert(result);
+*/
+
+let closed = ""
+
+while (closed !== "q") {
+
+    let firstNumber = prompt("Ingrese el primer número: ");
+    let secondNumber = prompt("Ingrese el segundo número: ");
+    let operand = prompt("Ingrese la operación (+, -, * or /): ").toLowerCase();
+    let result;
+
+    if (firstNumber.toLowerCase() === "q" || secondNumber.toLowerCase() === "q" || operand === "q"){
+        closed = "q"
+        console.log("Operación cancelada.")
+    } else {
+
+        firstNumber = Number(firstNumber);
+        secondNumber = Number(secondNumber);
+
+        if (!Number.isNaN(firstNumber) && !Number.isNaN(secondNumber)) {
+        switch (operand) {
+            case "+": result = firstNumber + secondNumber; break;
+            case "-": result = firstNumber - secondNumber; break;
+            case "*": result = firstNumber * secondNumber; break;
+            case "/": result = firstNumber / secondNumber; break;
+            default: result = "Error: operación desconocida";
+        }
+        } else {
+            result = "Error: al menos uno de los valores ingresados no es un número";
+        }
+
+        alert(result);
+    }
+}
