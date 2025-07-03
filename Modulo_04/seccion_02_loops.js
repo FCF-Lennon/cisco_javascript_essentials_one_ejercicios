@@ -586,3 +586,97 @@ while (closed !== "q") {
         alert(result);
     }
 }
+
+
+// Laboratorio - Bucles:
+
+/*
+    Tiempo estimado:
+    30–60 minutos
+
+    Nivel de dificultad:
+    Fácil / Medio
+
+    Objetivos:
+    Familiarizar al estudiante con:
+
+    los bucles (qué son los bucles, el bucle while, el bucle do–while, el bucle for, el bucle for–of, 
+    el bucle for–in, las instrucciones break y continue)
+
+    Escenario:
+    Podemos mejorar un poco nuestro programa de lista de contactos utilizando bucles. Ahora puedes 
+    intentar mostrar no solo el primer o el último contacto, sino todos los contactos en la lista, 
+    sin importar cuántos haya.
+
+    Además, intenta encerrar todo el programa en un bucle para que al usuario se le pregunte repetidamente 
+    qué desea hacer. El usuario puede elegir entre:
+
+    - mostrar el primer contacto (first)
+    - mostrar el último contacto (last)
+    - mostrar todos los contactos (all)
+    - agregar un nuevo contacto (new)
+    - salir del programa (quit)
+
+    Después de ejecutar la acción seleccionada, el programa debe ofrecer la opción de elegir nuevamente. 
+    El programa solo debe finalizar cuando el usuario introduzca un comando específico, por ejemplo, quit.
+*/
+
+let contacts = [
+    {
+        name: "Maxwell Wright",
+        phone: "(0191) 719 6495",
+        email: "Curabitur.egestas.nunc@nonummyac.co.uk"
+    }, 
+    {
+        name: "Raja Villarreal",
+        phone: "0866 398 2895",
+        email: "posuere.vulputate@sed.com"
+    }, 
+    {
+        name: "Helen Richards",
+        phone: "0800 1111",
+        email: "libero@convallis.edu"
+    }
+];
+
+let exit = false;
+
+while (!exit) {
+    let opcion =  prompt(
+        "Menú:\n" +
+        "---------------------\n" +
+        "Marque 1: Ver el primer contacto\n" +
+        "Marque 2: Ver el último contacto\n" +
+        "Marque 3: Listar los contactos\n" +
+        "Marque 4: Agregar nuevo contacto\n" +
+        "Marque 5: Salir\n"
+    );
+
+    if (opcion === "1") {
+        let first_contact = contacts[0]
+        console.log(`${first_contact.name} / ${first_contact.phone} / ${first_contact.email}`);
+    } else if (opcion === "2") {
+        let last_contact = contacts[contacts.length - 1]
+        console.log(`${last_contact.name} / ${last_contact.phone} / ${last_contact.email}`);
+    } else if (opcion === "3") {
+        console.log("Lista de contactos:\n------------------")
+        for (let contact of contacts) {
+            console.log(`${contact.name} / ${contact.phone} / ${contact.email}`);
+        }
+    } else if (opcion === "4") {
+        let nombre = prompt("Ingrese el nombre: ").trim();
+        let telefono = prompt("Ingrese el telefono: ").trim();
+        let correo = prompt("Ingrese el email: ").trim();
+
+        if (!nombre || !telefono || !correo) {
+            console.log("Los campos no pueden estar vacios.");
+        } else {
+            contacts.push({name:nombre, phone:telefono, email:correo});
+            alert("El contacto fue agregado en su agenda.");
+        }
+    } else if (opcion === "5") {
+        exit = true;
+    } else {
+        console.log("Opción inválida. Intente nuevamente.")
+    }
+} 
