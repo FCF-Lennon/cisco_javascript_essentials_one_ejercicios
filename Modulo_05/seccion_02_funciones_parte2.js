@@ -274,15 +274,14 @@ nombres.forEach(nombre => console.log(nombre)); // -> Alicia, Eva, Juan
 
 // EJERCICIOS:
 
+// Ejercicio 1 - Los arrays en JavaScript tienen un método sort que, como puedes imaginar, 
+// permite ordenar sus elementos. 
+
 /* 
-    Ejercicio 1: Los arrays en JavaScript tienen un método sort que, como puedes imaginar, 
-    permite ordenar sus elementos. 
-
-    Este método recibe como argumento una función que comparará dos elementos del array. 
-
-    La función debe devolver cero si consideramos que los argumentos son iguales, un valor menor 
-    que cero si consideramos que el primero es menor que el segundo, y un valor mayor que cero en 
-    caso contrario. Mira el ejemplo:
+    - Este método recibe como argumento una función que comparará dos elementos del array. 
+    - La función debe devolver cero si consideramos que los argumentos son iguales, un valor menor 
+      que cero si consideramos que el primero es menor que el segundo, y un valor mayor que cero en 
+      caso contrario. Mira el ejemplo:
 */
 
 let numbers = [50, 10, 40, 30, 20];
@@ -322,7 +321,7 @@ sorted = numbers.sort((a,b) => b - a)
 console.log(sorted)
 
 
-//  Ejercicio 2: Escribe tres funciones llamadas add, sub y mult, que tomen dos argumentos numéricos.
+//  Ejercicio 2 - Escribe tres funciones llamadas add, sub y mult, que tomen dos argumentos numéricos.
 
 /*  
     - Las funciones deben verificar si los argumentos son enteros (usa Number.isInteger). 
@@ -391,7 +390,7 @@ console.log(mult(12, 10.1)); // -> NaN
 */
 
 
-// Ejercicio 3: Reescribe las funciones del ejercicio anterior usando expresión de función flecha, 
+// Ejercicio 3 - Reescribe las funciones del ejercicio anterior usando expresión de función flecha, 
 // intentando escribirlas en la forma más corta posible.
 
 /* 
@@ -408,7 +407,7 @@ console.log(adicion(12, 10)); // -> 22
 console.log(multiplicacion(10, 10.1)); // -> NaN
 
 
-// Ejercicio 4: Escribe una función llamada action que reciba una función callback como p
+// Ejercicio 4 - Escribe una función llamada action que reciba una función callback como p
 // rimer argumento y otros dos argumentos numéricos. 
 
 /* 
@@ -436,7 +435,7 @@ console.log(action(resta, 12, 10)); // -> 2
 console.log(action(multiplicacion, 10, 10.1)); // -> NaN
 
 
-// Ejercicio 5: Escribe un programa que imprima (en la consola) números enteros consecutivos 10 veces, 
+// Ejercicio 5 - Escribe un programa que imprima (en la consola) números enteros consecutivos 10 veces, 
 // con intervalos de dos segundos (comenzando desde el número 1). 
 // Usa las funciones setInterval, clearInterval y setTimeout.
 
@@ -481,5 +480,56 @@ let intervalo = setInterval(() => {
     setTimeout(() => {
         clearInterval(intervalo);
     }, 20000);
-
 */
+
+
+// Ejercicio 6 - Escribe una función que calcule el enésimo elemento de la secuencia Fibonacci. 
+//
+
+
+/* 
+    Esta secuencia se define por la fórmula:
+
+    - Cada elemento de la secuencia (excepto los dos primeros) es la suma de los dos anteriores. 
+    - Por ejemplo: F1 = 1, F2 = F1 + F0 = 1, F3 = F2 + F1 = 2 y F6 = F5 + F4 = 8. 
+    - La función debe usar recursión. 
+    - En la definición, usa una expresión de función (almacena una función anónima en una variable).
+*/
+
+/* 
+    Ejemplo de uso y resultados esperados:
+
+    console.log(fibbRec(4)); // -> 3
+    console.log(fibbRec(7)); // -> 13
+*/
+
+// Desarrollo
+
+let fibbRec = function (n) {
+    let retVal = 0;
+    if (n != 0) {
+        if (n === 1) {
+            retVal = 1;
+        } else {
+            retVal = fibbRec(n - 1) + fibbRec(n - 2);
+        }
+    }
+    return retVal;
+}
+
+console.log(fibbRec(4)); // -> 3
+console.log(fibbRec(7)); // -> 13
+
+// o tambien:
+
+/* 
+    let fibbRec = function(n) {
+        if (n === 0) return 0;
+        if (n === 1) return 1;
+        return fibbRec(n - 1) + fibbRec(n - 2);
+    }
+
+    console.log(fibbRec(4)); // -> 3
+    console.log(fibbRec(7)); // -> 13 
+*/
+
