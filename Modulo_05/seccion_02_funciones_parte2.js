@@ -503,7 +503,7 @@ let intervalo = setInterval(() => {
     console.log(fibbRec(7)); // -> 13
 */
 
-// Desarrollo
+// Desarrollo:
 
 let fibbRec = function (n) {
     let retVal = 0;
@@ -533,3 +533,39 @@ console.log(fibbRec(7)); // -> 13
     console.log(fibbRec(7)); // -> 13 
 */
 
+// o tambien: let fibbrec = n => n < 2 ? n : fibbRec(n -1) + fibbRec(n - 2);
+
+
+// Ejercicio 7 - Reescribe la función del Ejercicio 6 usando una expresión de función flecha, 
+// intentando acortar el código al máximo (usa operadores condicionales y trata de no usar 
+// variables adicionales aparte del parámetro n).
+
+// Desarrollo:
+
+fibbRec =  n => n === 0 ? 0 : ( n === 1 ? 1 : fibbRec(n - 1) + fibbRec(n - 2));
+console.log(fibbRec(4)); // -> 3
+console.log(fibbRec(7)); // -> 13
+
+
+// Ejercicio 8 - Escribe una versión iterativa de la función del Ejercicio 6 (usa un bucle for). 
+// Declara la función usando declaración de función.
+
+
+function fibb (n) {
+       
+    if (n === 0) return 0;
+    if (n === 1) return 1;
+
+    let a = 0, b = 1
+
+    for (let i = 2; i <= n; i++) {
+        let c = a;
+        a = b;
+        b += c
+    }
+
+    return b
+}
+
+console.log(fibb(4)); // -> 3
+console.log(fibb(7)); // -> 13
