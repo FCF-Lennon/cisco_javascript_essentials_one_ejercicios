@@ -569,3 +569,99 @@ function fibb (n) {
 
 console.log(fibb(4)); // -> 3
 console.log(fibb(7)); // -> 13
+
+
+// Laboratorio:
+
+// Ejercicio 01 - Funciones (parte 1)
+
+
+// Objetivos:
+
+/*
+    Familiarizar al estudiante con:
+
+    - Conceptos básicos de funciones (qué son las funciones, declaración de funciones, llamada a funciones, 
+      variables locales, la instrucción return, parámetros de funciones, sombreado de variables);
+    - Funciones como miembros de primera clase (expresiones de funciones, pasar una función como parámetro, 
+      callbacks);
+    - Funciones flecha (declaración y llamada);
+    - Recursión (idea básica).
+*/
+
+// Escenario
+
+/*
+    Nuestro programa ha crecido bastante, lo que lo hace un poco difícil de leer. Esto es especialmente 
+    evidente en la instrucción switch, donde se encuentra la mayor parte de la lógica. Intenta organizar
+    tu código utilizando funciones. Define y llama a tres funciones en los lugares apropiados:
+
+    - showContact: la función debe tomar dos argumentos; el primero es la lista de contactos y el segundo 
+      es el número de índice del contacto a mostrar; dentro de la función, verifica si se han pasado los 
+      argumentos correctos, es decir, si contacts es un arreglo (usa la construcción instanceof Array 
+      para esto);
+
+    - showAllContacts: la función debe tomar un argumento, la lista de contactos; dentro de la función, 
+      verifica si el argumento proporcionado es un arreglo;
+
+    - addNewContact: la función debe tomar cuatro argumentos: una lista de contactos y los datos del nuevo 
+      contacto, es decir: nombre, teléfono y correo electrónico; antes de agregar un nuevo contacto, verifica 
+      si el argumento pasado es un arreglo y si los datos del nuevo contacto tienen algún valor.
+*/
+
+let contacts = [{
+    name: "Maxwell Wright",
+    phone: "(0191) 719 6495",
+    email: "Curabitur.egestas.nunc@nonummyac.co.uk"
+}, {
+    name: "Raja Villarreal",
+    phone: "0866 398 2895",
+    email: "posuere.vulputate@sed.com"
+}, {
+    name: "Helen Richards",
+    phone: "0800 1111",
+    email: "libero@convallis.edu"
+}];
+
+let x = 1;
+
+let showContact = (agenda, index) => {
+    if (agenda instanceof Array && Number.isInteger(index) && index >= 0 && index < agenda.length) {
+        return agenda[index];
+    } else {
+        return "La lista de contactos no es un arreglo válido o el índice no es correcto.";
+    }
+};
+
+function showAllContacts(agenda, callback) {
+    if (agenda instanceof Array) {
+        for (let i = 0; i < agenda.length; i++) {
+            console.log(callback(agenda, i));
+        }
+        return "Todos los contactos han sido mostrados.";
+    } else {
+        return "La lista de contactos no es un arreglo válido.";
+    }
+}
+
+let addNewContact = (agenda, name, phone, email) => {
+    if (agenda instanceof Array && name && phone && email) {
+        agenda.push({
+            name: name, 
+            phone: phone,
+            email: email
+        });
+        return agenda[agenda.length - 1]; 
+    } else {
+        return "Datos del contacto no válidos o la agenda no es un arreglo.";
+    }
+};
+
+let full_name = "John Doe";
+let phone = "123-456-7890";
+let email = "john.doe@example.com";
+
+console.log(showContact(contacts, x));
+console.log(showAllContacts(contacts, showContact));
+console.log(addNewContact(contacts, full_name, phone, email));
+
