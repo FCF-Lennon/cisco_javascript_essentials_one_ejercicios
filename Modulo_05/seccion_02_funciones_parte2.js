@@ -609,7 +609,7 @@ console.log(fibb(7)); // -> 13
       si el argumento pasado es un arreglo y si los datos del nuevo contacto tienen algún valor.
 */
 
-let contacts = [{
+/* let contacts = [{
     name: "Maxwell Wright",
     phone: "(0191) 719 6495",
     email: "Curabitur.egestas.nunc@nonummyac.co.uk"
@@ -663,5 +663,122 @@ let email = "john.doe@example.com";
 
 console.log(showContact(contacts, x));
 console.log(showAllContacts(contacts, showContact));
-console.log(addNewContact(contacts, full_name, phone, email));
+console.log(addNewContact(contacts, full_name, phone, email)); */
+
+
+// Ejercicio 02 - Functions (Part 2)
+
+// Objetivos:
+
+/*
+    Familiarizar al estudiante con:
+
+    - Fundamentos de funciones (qué son las funciones, declaración de funciones, llamada a funciones, 
+      variables locales, la instrucción return, parámetros de funciones, sombreado de variables);
+    - Funciones como elementos de primera clase (expresiones de funciones, pasar una función como 
+      parámetro, callbacks);
+    - Funciones flecha (declaración y llamada);
+    - Recursión (idea básica).
+*/
+
+// Escenario:
+
+/*
+    Usaremos las funciones para agregar un nuevo elemento de funcionalidad.
+    Los arreglos tienen un método llamado sort que permite ordenar sus elementos.
+    A este método le pasamos una función que debe comparar dos elementos del arreglo y decidir 
+    cuál es menor y cuál es mayor.
+    Si el primer elemento es menor, la función debe retornar un valor menor que cero; si son iguales, 
+    retorna cero; y si el primero es mayor, retorna un valor mayor que cero.  
+*/
+
+// Por ejemplo, el arreglo:
+
+// numbers = [10, 50, 40, 20];
+
+// puede ordenarse en orden ascendente con la siguiente llamada:
+
+/* 
+    numbers.sort(function (a, b) {
+        let retVal = 0;
+        if (a > b) {
+            retVal = 1;
+        } else {
+            retVal = -1;
+        }
+        return retVal;
+    });    
+*/
+
+// o, de forma más simple:
+
+// numbers.sort((a, b) => a - b);
+
+/*
+    Dale al usuario la opción de seleccionar una acción de ordenamiento desde una lista.
+    Cuando se seleccione esta opción, el usuario debe poder especificar si desea ordenar los contactos 
+    por nombre, teléfono o correo electrónico.
+*/
+
+
+
+let showAllContacts = function(contacts) {
+    if (contacts instanceof Array) {
+        for (let contact of contacts) {
+            console.log(`${contact.name} / ${contact.phone} / ${contact.email}`);
+        }
+    }
+}
+
+
+let contacts_sort = function(agenda, opcion) {
+    if (Number.isInteger(opcion) && opcion >= 1 && opcion <= 3) {
+        let key = orden[opcion - 1];
+        agenda.sort((a, b) => {
+            if (a[key] < b[key]) return -1;
+            if (a[key] > b[key]) return 1;
+            return 0;
+        });
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+let contacts = [{
+    name: "Maxwell Wright",
+    phone: "(0191) 719 6495",
+    email: "Curabitur.egestas.nunc@nonummyac.co.uk"
+}, {
+    name: "Raja Villarreal",
+    phone: "0866 398 2895",
+    email: "posuere.vulputate@sed.com"
+}, {
+    name: "Helen Richards",
+    phone: "0800 1111",
+    email: "libero@convallis.edu"
+}];
+
+const orden = ['name', 'phone', 'email'];
+
+let seleccion = prompt(`
+    Menu (Ordenar contactos):
+    1. Ordenar por nombre
+    2. Ordenar por teléfono
+    3. Ordenar por email
+`);
+
+
+
+if (seleccion !== null) {
+    let resultado = contacts_sort(contacts, Number(seleccion));
+    if (resultado) {
+        showAllContacts(contacts); 
+    } else {
+        console.log("Opción no válida. Por favor, elige una opción entre 1 y 3.");
+    }
+} else {
+    console.log("Operación cancelada por el usuario.");
+}
 
